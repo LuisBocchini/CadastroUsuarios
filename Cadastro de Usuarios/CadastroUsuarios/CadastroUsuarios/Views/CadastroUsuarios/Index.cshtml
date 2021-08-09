@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Cadastro de Usuários";
+}
+<div class="text-center">
+
+    @if (ViewBag.usuario != null && ViewBag.editar == false)
+    {
+        <h1 class="display-4">@ViewBag.usuario.Nome</h1>
+        <br />
+        <form id="@ViewBag.usuario.Id" class="form-usuario">
+            <input type="text" id="nome" name="fname" value="@ViewBag.usuario.Nome" placeholder="Nome" disabled><br>
+            <input type="text" id="email" name="lname" value="@ViewBag.usuario.Email" placeholder="Email" disabled><br>
+            <input type="text" id="dataNascimento" name="lname" value="@ViewBag.usuario.DataNascimento.ToString("dd/MM/yyyy")" placeholder="Data de nascimento" disabled><br>
+            <input type="text" id="cpf" name="lname" value="@ViewBag.usuario.CPF" placeholder="CPF" maxlength="11" disabled><br>
+            <input type="text" name="lname" value="@ViewBag.usuario.Endereco.Cep" placeholder="CEP" id="cep" maxlength="9" onblur="pesquisacep(this.value);" disabled><br>
+            <input type="text" id="rua" name="lname" value="@ViewBag.usuario.Endereco.Logradouro" placeholder="Logradouro" disabled><br>
+            <input type="text" id="complemento" name="lname" value="@ViewBag.usuario.Endereco.Complemento" placeholder="Complemento" disabled><br>
+            <input type="text" id="bairro" name="lname" value="@ViewBag.usuario.Endereco.Bairro" placeholder="Bairro" disabled><br>
+            <input type="text" id="cidade" name="lname" value="@ViewBag.usuario.Endereco.Cidade" placeholder="Cidade" disabled><br>
+            <input type="text" id="uf" name="lname" value="@ViewBag.usuario.Endereco.Estado" placeholder="Estado" disabled><br>
+            <input type="button" value="Enviar" disabled>
+
+        </form>
+    }
+    else if (ViewBag.usuario != null && ViewBag.editar == true)
+    {
+        <h1 class="display-4">@ViewBag.usuario.Nome</h1>
+        <br />
+        <form id="@ViewBag.usuario.Id" class="form-usuario" enderecoId="@ViewBag.usuario.Endereco.Id">
+            <input type="text" id="nome" name="fname" value="@ViewBag.usuario.Nome" placeholder="Nome"><br>
+            <input type="text" id="email" name="lname" value="@ViewBag.usuario.Email" placeholder="Email"><br>
+            <input type="text" id="dataNascimento" name="lname" value="@ViewBag.usuario.DataNascimento.ToString("dd/MM/yyyy")" placeholder="Data de nascimento"><br>
+            <input type="text" id="cpf" name="lname" value="@ViewBag.usuario.CPF" placeholder="CPF" maxlength="11"><br>
+            <input type="text" name="lname" value="@ViewBag.usuario.Endereco.Cep" placeholder="CEP" id="cep" maxlength="9" onblur="pesquisacep(this.value);"><br>
+            <input type="text" id="rua" name="lname" value="@ViewBag.usuario.Endereco.Logradouro" placeholder="Logradouro"><br>
+            <input type="text" id="complemento" name="lname" value="@ViewBag.usuario.Endereco.Complemento" placeholder="Complemento"><br>
+            <input type="text" id="bairro" name="lname" value="@ViewBag.usuario.Endereco.Bairro" placeholder="Bairro"><br>
+            <input type="text" id="cidade" name="lname" value="@ViewBag.usuario.Endereco.Cidade" placeholder="Cidade"><br>
+            <input type="text" id="uf" name="lname" value="@ViewBag.usuario.Endereco.Estado" placeholder="Estado"><br>
+            <input type="button" value="Enviar" onclick="CadastrarUsuario()">
+        </form>
+    }
+    else
+    {
+        <h1 class="display-4">Cadastro de usuários</h1>
+        <br />
+        <form id="0" class="form-usuario" enderecoId="0">
+            <input type="text" id="nome" name="fname" value="" placeholder="Nome"><br>
+            <input type="text" id="email" name="lname" value="" placeholder="Email"><br>
+            <input type="text" id="dataNascimento" name="lname" value="" placeholder="Data de nascimento"><br>
+            <input type="text" id="cpf" name="lname" value="" placeholder="CPF" maxlength="11"><br>
+            <input type="text" name="lname" value="" placeholder="CEP" id="cep" maxlength="9" onblur="pesquisacep(this.value);"><br>
+            <input type="text" id="rua" name="lname" value="" placeholder="Logradouro"><br>
+            <input type="text" id="complemento" name="lname" value="" placeholder="Complemento"><br>
+            <input type="text" id="bairro" name="lname" value="" placeholder="Bairro"><br>
+            <input type="text" id="cidade" name="lname" value="" placeholder="Cidade"><br>
+            <input type="text" id="uf" name="lname" value="" placeholder="Estado"><br>
+            <input type="button" value="Enviar" onclick="CadastrarUsuario()">
+        </form>
+    }
+
+    <div class="modal-container">
+        <div class="modal-mensagem">
+            <p class="mensagem"></p>
+            <button id="btnFechar" onclick="FecharModal()">Fechar</button>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="~/js/CadastroUsuario.js"></script>
+<script src="~/js/viacep.js"></script>
+

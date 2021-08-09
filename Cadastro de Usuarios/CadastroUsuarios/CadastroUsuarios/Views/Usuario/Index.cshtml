@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 30px;">Usuários</h1>
+    <br />
+    <div class="container-usuarios">
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Vizualizar</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+            @foreach (var usuario in ViewBag.usuarios)
+            {
+                <tr id="@usuario.Id">
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    <td> <a class="nav-link text-dark" onclick="VizualizarUsuario(this)" style="cursor:pointer"><img src="~/Img/vizualizar.png" class="icones" /></a></td>
+                    <td> <a class="nav-link text-dark" onclick="EditarUsuario(this)" style="cursor:pointer"><img src="~/Img/editar.png" class="icones" /></a></td>
+                    <td> <a class="nav-link text-dark" onclick="AbrirModal(this)" style="cursor:pointer"><img src="~/Img/excluir.png" class="icones" /></a></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="" id="modal-pergunta">
+        <div class="modal_pergunta">
+            <p id="mensagem">Deseja realizar esta operação?</p>
+            <button id="btnSim" onclick="ExcluirUsuario()" style="margin-right: 10px;">Sim</button>
+            <button id="btnNão" onclick="FecharModalPergunta()">Não</button>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/usuario.js"></script>
